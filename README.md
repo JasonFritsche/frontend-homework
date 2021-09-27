@@ -27,7 +27,7 @@ The form feilds are as follows:
 The form will post to an api but the data does not need to be saved or stored anywhere. We have setup an example node api in this repo, however you are welcome to use whatever backend you want. 
 
 ## Requirements
-- Use any new front end framework to complete this task. Anuglar, vue, react, whatever you are most comfortable with. 
+- Use any new front end framework to complete this task. Angular, vue, react, whatever you are most comfortable with. 
 - Include unit tests
 - To complete your homework, please fork this repo and commit your work to your fork. When you are ready for us to look at it, give us access to your fork so we can review and run it.
 - Create a README.md with instructions on how to run the app and tests. 
