@@ -35,7 +35,7 @@ The form will post to an api but the data does not need to be saved or stored an
 
 ## Considerations 
 - Design is not a strong consideration for this homework, but you are welcome to use bootstrap, material design, or any design system you like. 
-- Use best practices are input validation.
+- Use best practices for input validation.
 - Is your app web accessible? Is there something simple you can do to check for ADA compliance? 
 
 
