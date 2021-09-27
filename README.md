@@ -21,7 +21,7 @@ The form feilds are as follows:
     - Assume US phone numbers are being used.
 - [ ] Confrimation Checkbox (required).
 - [ ] Post form data to an api.
-    - The node api will have a post endpoint http://localhost/api/create to post the data too. 
+    - The node api will have a post endpoint http://localhost:8000/api/create to post the data too. 
     - On success show a succuss message and clear all form data. 
  
 The form will post to an api but the data does not need to be saved or stored anywhere. We have setup an example node api in this repo, however you are welcome to use whatever backend you want. 
@@ -29,6 +29,7 @@ The form will post to an api but the data does not need to be saved or stored an
 ## Requirements
 - Use any new front end framework to complete this task. Anuglar, vue, react, whatever you are most comfortable with. 
 - Include unit tests
+- To complete your homework, please fork this repo and commit your work to your fork. When you are ready for us to look at it, give us access to your fork so we can review and run it.
 - Create a README.md with instructions on how to run the app and tests. 
 
 
@@ -37,13 +38,12 @@ The form will post to an api but the data does not need to be saved or stored an
 - Use best practices are input validation.
 - Is your app web accessible? Is there something simple you can do to check for ADA compliance? 
 
-If you have any questions, please ask!
-
-To complete your homework, please fork this repo and commit your work to your fork. When you are ready for us to look at it, give us access to your fork so we can review and run it.
-
 
 # API Setup
 1) make sure node is installed. Go download it [here](https://nodejs.org/en/) 
 2) run npm i
 3) node server.js (starts node api)
 4) ng serve (starts angular app)
+
+
+If you have any questions, please ask!
