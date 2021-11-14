@@ -1,0 +1,27 @@
+:host {
+  height: 100%;
+  .signup-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .signup-card {
+      width: max-content;
+      height: max-content;
+    }
+  }
+  .mat-card-actions,
+  .mat-card-subtitle,
+  .mat-card-content {
+    display: grid;
+    grid-template-columns: 2fr;
+  }
+
+  .mat-form-field {
+    padding: 0 4px;
+  }
+
+  button {
+    margin: 0 10px !important;
+  }
+}

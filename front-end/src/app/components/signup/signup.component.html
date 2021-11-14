@@ -1,3 +1,42 @@
 <div class="signup-container">
-  <form></form>
+  <mat-card class="signup-card">
+    <form [formGroup]="signupForm">
+      <mat-card-title>Sign Up</mat-card-title>
+      <mat-card-content>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Work Email</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Verify Password</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
 </div>
