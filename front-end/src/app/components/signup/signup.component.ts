@@ -9,6 +9,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { SignupService } from 'src/app/services/signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,10 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private signupService: SignupService
+  ) {}
 
   public signupForm = this.formBuilder.group(
     {
@@ -37,12 +41,13 @@ export class SignupComponent implements OnInit {
     { validators: this.passwordMatchValidator }
   );
 
-  ngOnInit(): void {
-    this.signupForm.valueChanges.subscribe((change) => {
-      console.log(change);
-      const errors = this.getFormErrors(this.signupForm);
-      console.log(errors);
-    });
+  ngOnInit(): void {}
+
+  public onFormSubmit() {
+    console.log(this.signupForm.value);
+    this.signupService
+      .signup(this.signupForm.value)
+      .subscribe((res) => console.log(res));
   }
 
   private passwordValidator(): ValidatorFn {
@@ -76,33 +81,9 @@ export class SignupComponent implements OnInit {
   }
 
   private passwordMatchValidator(formGroup: FormGroup) {
-    console.log(formGroup);
     return formGroup.get('password')?.value ===
       formGroup.get('verifyPassword')?.value
       ? null
       : { passwordMismatch: true };
-  }
-
-  private getFormErrors(form: AbstractControl | null) {
-    if (form && form instanceof FormControl) {
-      // Return FormControl errors or null
-      return form?.errors ?? null;
-    }
-    if (form instanceof FormGroup) {
-      const groupErrors = form.errors;
-      // Form group can contain errors itself, in that case add'em
-      const formErrors: any = groupErrors ? { groupErrors } : {};
-      Object.keys(form.controls).forEach((key) => {
-        // Recursive call of the FormGroup fields
-        const error = this.getFormErrors(form.get(key)) ?? null;
-        if (error !== null) {
-          // Only add error if not null
-          formErrors[key] = error;
-        }
-      });
-      // Return FormGroup errors or null
-      return Object.keys(formErrors).length > 0 ? formErrors : null;
-    }
-    return null;
   }
 }
