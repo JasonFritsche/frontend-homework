@@ -1,42 +1,146 @@
 <div class="signup-container">
   <mat-card class="signup-card">
     <form [formGroup]="signupForm">
-      <mat-card-title>Sign Up</mat-card-title>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon
+            class="signup-icon"
+            aria-hidden="false"
+            aria-label="Sign up icon"
+            >app_registration</mat-icon
+          >Sign Up</mat-card-title
+        >
+      </mat-card-header>
+
       <mat-card-content>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>First Name</mat-label>
-            <input matInput />
+            <input matInput formControlName="firstName" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Last Name</mat-label>
-            <input matInput />
+            <input matInput formControlName="lastName" />
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Work Email</mat-label>
-            <input matInput />
+            <input matInput formControlName="workEmail" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Phone</mat-label>
-            <input matInput />
+            <input matInput formControlName="phone" />
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput />
+            <input matInput type="password" formControlName="password" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Verify Password</mat-label>
-            <input matInput />
+            <input matInput type="password" formControlName="verifyPassword" />
           </mat-form-field>
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="accent">Submit</button>
+        <button
+          mat-raised-button
+          color="accent"
+          [disabled]="signupForm.invalid"
+        >
+          Submit
+        </button>
       </mat-card-actions>
     </form>
   </mat-card>
+  <div
+    *ngIf="!signupForm.valid && signupForm.touched"
+    class="form-errors-container"
+  >
+    <div class="errors-header-container">
+      <h1>Please fix errors on form</h1>
+    </div>
+    <ul>
+      <li
+        *ngIf="signupForm.controls?.firstName?.touched && signupForm.controls?.firstName?.errors?.['required']"
+      >
+        First Name is required
+      </li>
+      <li
+        *ngIf="signupForm.controls?.lastName?.touched && signupForm.controls?.lastName?.errors?.['required']"
+      >
+        Last Name is required
+      </li>
+      <li
+        *ngIf="signupForm.controls?.workEmail?.touched && signupForm.controls?.workEmail?.errors?.['required']"
+      >
+        Work Email is required
+      </li>
+      <li
+        *ngIf="signupForm.controls?.workEmail?.touched && signupForm.controls?.workEmail?.errors?.['email']"
+      >
+        Please enter valid email format
+      </li>
+      <li
+        *ngIf="signupForm.controls?.workEmail?.touched && signupForm.controls?.workEmail?.errors?.['pattern']"
+      >
+        Please use the "@awesomejob" domain in Work Email field
+      </li>
+      <li
+        *ngIf="signupForm.controls?.password?.touched && signupForm.controls?.password?.errors?.['required']"
+      >
+        Password is required
+      </li>
+      <li
+        *ngIf="
+          signupForm.controls?.password?.touched &&
+          signupForm.controls?.password?.errors?.passwordStrength
+            ?.hasUpperCaseLetterError
+        "
+      >
+        Password requires at least one uppercase letter
+      </li>
+      <li
+        *ngIf="
+          signupForm.controls?.password?.touched &&
+          signupForm.controls?.password?.errors?.passwordStrength
+            ?.hasLowerCaseLetterError
+        "
+      >
+        Password requires at least one lowercase letter
+      </li>
+      <li
+        *ngIf="
+          signupForm.controls?.password?.touched &&
+          signupForm.controls?.password?.errors?.passwordStrength
+            ?.hasNumericValueError
+        "
+      >
+        Password requires at least one numeric value
+      </li>
+      <li
+        *ngIf="
+          signupForm.controls?.password?.touched &&
+          signupForm.controls?.password?.errors?.passwordStrength
+            ?.hasSpecialCharacterError
+        "
+      >
+        Password requires at least one special character
+      </li>
+      <li
+        *ngIf="
+          signupForm.controls?.password?.touched &&
+          signupForm.controls?.password?.errors?.passwordStrength
+            ?.hasPasswordLengthError
+        "
+      >
+        Password must be at least eight characters long
+      </li>
+      <li *ngIf="signupForm?.errors?.passwordMismatch">
+        Verified password field must match password
+      </li>
+    </ul>
+  </div>
 </div>
