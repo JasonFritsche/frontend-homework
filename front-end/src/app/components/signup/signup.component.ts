@@ -46,10 +46,9 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onFormSubmit(formDirective: FormGroupDirective) {
+  public onFormSubmit() {
     this.signupService.signup(this.signupForm.value).subscribe((res) => {
       this.toastr.success('User has been created');
-      formDirective.reset();
       this.signupForm.reset();
       Object.keys(this.signupForm.controls).forEach((key) => {
         if (key) this.signupForm?.get(key)?.setErrors(null);
