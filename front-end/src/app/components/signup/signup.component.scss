@@ -10,12 +10,6 @@
       height: max-content;
     }
   }
-  .mat-card-actions,
-  .mat-card-subtitle,
-  .mat-card-content {
-    display: grid;
-    grid-template-columns: 2fr;
-  }
 
   .mat-form-field {
     padding: 0 4px;
@@ -42,6 +36,24 @@
     }
     ul {
       list-style-type: none;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .mat-card-subtitle,
+    .mat-card-content {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (min-width: 601px) {
+    .mat-card-subtitle,
+    .mat-card-content {
+      display: grid;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+      grid-auto-rows: minmax(100px, auto);
     }
   }
 }

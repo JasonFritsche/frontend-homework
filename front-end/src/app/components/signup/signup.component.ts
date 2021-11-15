@@ -6,10 +6,11 @@ import {
   ValidationErrors,
   ValidatorFn,
   FormGroup,
-  FormControl,
+  FormGroupDirective,
 } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { SignupService } from 'src/app/services/signup.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,8 @@ import { SignupService } from 'src/app/services/signup.service';
 export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private toastr: ToastrService
   ) {}
 
   public signupForm = this.formBuilder.group(
@@ -37,17 +39,22 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, this.passwordValidator()]],
       verifyPassword: ['', Validators.required],
       phone: ['', RxwebValidators.mask({ mask: '(999) 999-9999' })],
+      verified: [false, Validators.requiredTrue],
     },
     { validators: this.passwordMatchValidator }
   );
 
   ngOnInit(): void {}
 
-  public onFormSubmit() {
-    console.log(this.signupForm.value);
-    this.signupService
-      .signup(this.signupForm.value)
-      .subscribe((res) => console.log(res));
+  public onFormSubmit(formDirective: FormGroupDirective) {
+    this.signupService.signup(this.signupForm.value).subscribe((res) => {
+      this.toastr.success('User has been created');
+      formDirective.reset();
+      this.signupForm.reset();
+      Object.keys(this.signupForm.controls).forEach((key) => {
+        if (key) this.signupForm?.get(key)?.setErrors(null);
+      });
+    });
   }
 
   private passwordValidator(): ValidatorFn {

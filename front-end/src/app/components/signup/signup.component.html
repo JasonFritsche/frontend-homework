@@ -1,6 +1,10 @@
 <div class="signup-container">
   <mat-card class="signup-card">
-    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+    <form
+      [formGroup]="signupForm"
+      #formDirective="ngForm"
+      (ngSubmit)="onFormSubmit(formDirective)"
+    >
       <mat-card-header>
         <mat-card-title>
           <mat-icon
@@ -18,6 +22,8 @@
             <mat-label>First Name</mat-label>
             <input matInput formControlName="firstName" />
           </mat-form-field>
+        </div>
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastName" />
@@ -28,6 +34,8 @@
             <mat-label>Work Email</mat-label>
             <input matInput formControlName="workEmail" />
           </mat-form-field>
+        </div>
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Phone</mat-label>
             <input matInput formControlName="phone" />
@@ -38,6 +46,8 @@
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" />
           </mat-form-field>
+        </div>
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Verify Password</mat-label>
             <input matInput type="password" formControlName="verifyPassword" />
@@ -45,6 +55,9 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
+        <mat-checkbox formControlName="verified">
+          Check to verify data
+        </mat-checkbox>
         <button
           mat-raised-button
           color="accent"
@@ -137,6 +150,9 @@
         "
       >
         Password must be at least eight characters long
+      </li>
+      <li *ngIf="signupForm.controls?.verified?.errors?.required">
+        Verified Checkbox must be checked prior to submitting form
       </li>
       <li *ngIf="signupForm?.errors?.passwordMismatch">
         Verified password field must match password
